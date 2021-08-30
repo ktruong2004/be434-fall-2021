@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-# Say hello
+"""
+Author:
+Purpose: Say hello
+"""
 
 import argparse
 
+#--------------------------------------------------
 def get_args():
     """Get the command-line arguments"""
 
@@ -10,10 +14,14 @@ def get_args():
     parser.add_argument('-n', '--name', default='World', help='Name to greet')
     return parser.parse_args()
 
-def main(): 
+#--------------------------------------------------
+def main():
+    """My head is spinning around"""
+
     args = get_args()
     name = args.name
-    print('Hello, ' + name + '!')
+    print'Hello,'+ name +'!'
 
+#--------------------------------------------------
 if __name__ == '__main__':
     main()
