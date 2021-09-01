@@ -20,7 +20,7 @@ def main():
 
     args = get_args()
     name = args.name
-    print'Hello,'+ name +'!'
+    print('Hello, '+ name +'!')
 
 #--------------------------------------------------
 if __name__ == '__main__':
