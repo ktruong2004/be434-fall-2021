@@ -27,7 +27,6 @@ def get_args():
                         help='Whom to greet',
                         default='Stranger')
 
- 
     parser.add_argument('-e',
                         '--excited',
                         help='A boolean flag',
@@ -40,8 +39,8 @@ def get_args():
 def main():
     """Make a jazz noise here"""
 
+
     args = get_args()
-    
     if args.excited:
         print(f'{args.greeting}, {args.name}!')
     else:
