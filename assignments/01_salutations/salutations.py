@@ -20,17 +20,21 @@ def get_args():
     parser.add_argument('-g',
                         '--greeting',
                         help='The greeting',
+                        metavar='str',
+                        type=str,
                         default='Howdy')
 
     parser.add_argument('-n',
                         '--name',
                         help='Whom to greet',
+                        metavar='str',
+                        type=str,
                         default='Stranger')
 
     parser.add_argument('-e',
                         '--excited',
                         help='A boolean flag',
-                        action='store_true', default= False)
+                        action='store_true', default=False)
 
     return parser.parse_args()
 
@@ -38,7 +42,6 @@ def get_args():
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
-
 
     args = get_args()
     if args.excited:
