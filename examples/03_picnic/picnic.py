@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""
-Author : ktruong <ktruong@localhost>
-Date   : 2021-09-13
-Purpose: Rock the Casbah
-"""
+"""Picnic game"""
 
 import argparse
 
@@ -17,8 +13,7 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('item',
-                        metavar='int',
-                        type=int,
+                        metavar='str',
                         nargs='+',
                         help='Item(s) to bring')
 
@@ -40,17 +35,18 @@ def main():
 
     if args.sorted:
         items.sort()
+
+    bringing = ''
     if num == 1:
-        print(f'{items[0]} = {items[0]}')
+        bringing = items[0]
+        print('You are bringing ' + items[0] + '.')
     elif num == 2:
-        sum1 = items[0] + items[1]
-        print(f'{items[0]} + {items[1]} = {sum1}')
-    elif num == 3:
-        sum2 = items[0] + items[1] + items[2]
-        print(f'{items[0]} + {items[1]} + {items[2]} = {sum2}')
+        bringing = ' and '.join(items)
+        print('You are bringing ' + ' and ' .join(items) + '.')
     else:
-        sum3 = items[0] + items[1] + items[2] + items[3]
-        print(f'{items[0]} + {items[1]} + {items[2]} + {items[3]} = {sum3}')
+        items[-1] = 'and ' + items[-1]
+        bringing = ', '.join(items)
+        print('You are bringing {}.'.format(bringing))
 
 
 # --------------------------------------------------
