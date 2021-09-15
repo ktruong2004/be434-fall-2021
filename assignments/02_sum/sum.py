@@ -13,7 +13,7 @@ def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Picnic game',
+        description='Sum numbers',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('item',
