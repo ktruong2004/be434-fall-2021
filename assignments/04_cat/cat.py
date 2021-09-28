@@ -20,10 +20,10 @@ def get_args():
                         help='Input file(s)',type=argparse.FileType('rt'),
                         metavar ='FILE',nargs='+',default=None)
 
-    parser.add_argument('-n','--number',
+    parser.add_argument('-n',
+                        '--number',
                         help='Number the lines',
-                        type=int,nargs='+',
-                        default=False)
+                        action='store_true',default=False)
 
 
     args = parser.parse_args()
@@ -40,9 +40,9 @@ def main():
     for fh in args.file:
         for line_number, line in enumerate(fh, start=1):
             if args.number:
-                print(line_number   ,line,end='')
+                print(f'{line_number} {line}',end='')
             else:
-                print(line,end='')
+                print(f'{line}',end='')
     
  
 
