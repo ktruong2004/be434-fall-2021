@@ -6,7 +6,7 @@ Purpose: Rock the Casbah
 """
 
 import argparse
-import io
+
 
 # --------------------------------------------------
 def get_args():
@@ -17,36 +17,28 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('file',
-                        help='Input file(s)',type=argparse.FileType('rt'),
-                        metavar ='FILE',nargs='+',default=None)
+                        help='Input file(s)',
+                        metavar='FILE',
+                        type=argparse.FileType('rt'),
+                        nargs='+', default=None)
 
-    parser.add_argument('-n',
-                        '--number',
-                        help='Number the lines',
-                        action='store_true',default=False)
+    parser.add_argument('-n', '--number', help='Number the lines',
+                        action='store_true', default=False)
 
-
-    args = parser.parse_args()
-
-
-    return args
+    return parser.parse_args()
 
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
-    
+
     args = get_args()
     for fh in args.file:
         for line_number, line in enumerate(fh, start=1):
             if args.number:
-                print(f'{line_number} {line}',end='')
+                print("     {}	{}".format(line_number, line), end='')
             else:
-                print(f'{line}',end='')
-    
- 
-
-
+                print(f'{line}', end='')
 
 
 # --------------------------------------------------
