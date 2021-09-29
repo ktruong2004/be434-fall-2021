@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Author : ktruong <ktruong@localhost>
-Date   : 2021-09-27
+Date   : 2021-09-29
 Purpose: Rock the Casbah
 """
 
@@ -25,20 +25,30 @@ def get_args():
     parser.add_argument('-n', '--number', help='Number the lines',
                         action='store_true', default=False)
 
+    # args = parser.parse_args()
+    
+    # if not 3 <= len(args.file) <= 5:
+    #     parser.error('Must have 3-5 files')
+    
+    # return args
     return parser.parse_args()
 
 
 # --------------------------------------------------
-def main():
+def main(): #define function
     """Make a jazz noise here"""
 
-    args = get_args()
+    args = get_args() #define variable
+
     for fh in args.file:
-        for line_number, line in enumerate(fh, start=1):
+        line_num = 0
+        for line in fh:
+            line_num += 1
             if args.number:
-                print("{:6}\t{}".format(line_number, line), end='')
+                print('{:6}\t{}'.format(line_num,line.rstrip()))
             else:
-                print(f'{line}', end='')
+                print(line,end='')
+    
 
 
 # --------------------------------------------------
