@@ -32,7 +32,7 @@ def get_args():
                         help='Output filename',
                         metavar='FILE',
                         type=argparse.FileType('wt'),
-                        default= 'out.txt')
+                        default='out.txt')
 
     return parser.parse_args()
 
@@ -50,11 +50,12 @@ def main():
 
     k = 3
     seq = args.sequence.upper()
-    for codon in [seq[i:i + k] for i in range(0,len(seq),k)]:
-        print(codon_table.get(codon,'-'),end='',file=args.outfile)
+    for codon in [seq[i:i + k] for i in range(0, len(seq), k)]:
+        print(codon_table.get(codon, '-'), end='', file=args.outfile)
 
     print(file=args.outfile)
     print(f'Output written to "{args.outfile.name}".')
+
 
 # --------------------------------------------------
 if __name__ == '__main__':
