@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Author : ktruong <ktruong@localhost>
-Date   : 2021-10-06
+Date   : 2021-10-13
 Purpose: Rock the Casbah
 """
 
@@ -41,23 +41,14 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    file1 = args.FILE1
-    file2 = args.FILE2
-    word1 = {}
-    word2 = {}
-    for fh in file1:
-        for line1 in fh.split():
-            if line1 not in word1.keys():
-                word1[line1] = 0
-            word1[line1] += 1
-        for gh in file2:
-            for line2 in gh.split():
-                if line2 not in word2.keys():
-                    word2[line2] = 0
-                word2[line2] += 1
-    set(word1).intersection(set(word2))
-    for item in set(word1).intersection(set(word2)):
-        print(item, file=args.outfile)
+    word1 = args.FILE1.read().split()
+    word2 = args.FILE2.read().split()
+    # word1 = {}
+    # word2 = {}
+    for word in word1:
+        if word in word2:
+            print(word, file=args.outfile)
+
 
 
 # --------------------------------------------------
