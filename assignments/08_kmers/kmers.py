@@ -16,8 +16,6 @@ def get_args():
         description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    
-
     parser.add_argument('-k',
                         '--kmer',
                         help='K-mer size',
@@ -50,31 +48,29 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    words1 = {}
-    words2 = {}
-    for fh in args.file1:
-        for line1 in fh.split():
-            for kmer1 in find_kmers(line1, args.kmer):
-                if kmer1 not in words1.keys():
-                    words1[kmer1] = 0
-                words1[kmer1] += 1
-    for gh in args.file2:
-        for line2 in gh.split():
-            for kmer2 in find_kmers(line2, args.kmer):
-                if kmer2 not in words2.keys():
-                    words2[kmer2] = 0
-                words2[kmer2] += 1
-    set(words1).intersection(set(words2))
-    for item in set(words1).intersection(set(words2)):
-        print("{:10} {:5} {:5}".format(item,words1[kmer1],words2[kmer2]))
-        print(words1, words2)
-
+    kmers1 = {}
+    kmers2 = {}
+    for line in args.file1:
+        for word in line.split():
+            for kmer in find_kmers(word, args.kmer):
+                if kmer not in kmers1:
+                    kmers1[kmer] = 0
+                kmers1[kmer] += 1
+    for line in args.file2:
+        for word in line.split():
+            for kmer in find_kmers(word, args.kmer):
+                if kmer not in kmers2:
+                    kmers2[kmer] = 0
+                kmers2[kmer] += 1
+    set(kmers1).intersection(set(kmers2))
+    for kmer in set(kmers1).intersection(set(kmers2)):
+        print("{:10} {:5} {:5}".format(kmer, kmers1[kmer], kmers2[kmer]))
 
 
 # --------------------------------------------------
 def find_kmers(seq, k):
     """ Find k-mers in string """
-    
+
     n = len(seq) - k + 1
     return [] if n < 1 else [seq[i:i + k] for i in range(n)]
 
@@ -88,7 +84,9 @@ def test_find_kmers():
     assert find_kmers('ACTG', 2) == ['AC', 'CT', 'TG']
     assert find_kmers('ACTG', 3) == ['ACT', 'CTG']
     assert find_kmers('ACTG', 4) == ['ACTG']
-    assert find_kmers('ACTG', 5) == []    
+    assert find_kmers('ACTG', 5) == []
+
+
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
