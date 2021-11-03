@@ -18,14 +18,12 @@ def get_args():
         description='Rock the Casbah',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    
     parser.add_argument('files',
                         help='Input file(s)',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
                         nargs="+",
                         default=None)
-
 
     parser.add_argument('-o',
                         '--outdir',
@@ -43,19 +41,16 @@ def main():
 
     args = get_args()
     out_dir = args.outdir
-    
     if not os.path.isdir(out_dir):
         os.makedirs(out_dir)
-    
     for fh in args.files:
         root, ext = os.path.splitext(os.path.basename(fh.name))
         forward = open(os.path.join(out_dir, root + '_1' + ext), 'wt')
         reverse = open(os.path.join(out_dir, root + '_2' + ext), 'wt')
         parser = SeqIO.parse(fh, 'fasta')
-
         for i, rec in enumerate(parser):
             SeqIO.write(rec, forward if i % 2 == 0 else reverse, 'fasta')
-    
+
     print(f'Done, see output in "{out_dir}"')
 
 
