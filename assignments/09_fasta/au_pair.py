@@ -5,9 +5,11 @@ Date   : 2021-11-02
 Purpose: Rock the Casbah
 """
 
+from Bio import SeqIO
 import argparse
 import os
-from Bio import SeqIO
+
+
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""
@@ -17,18 +19,20 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     
-    parser.add_argument('file',
+    parser.add_argument('files',
                         help='Input file(s)',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
                         nargs="+",
                         default=None)
 
+
     parser.add_argument('-o',
                         '--outdir',
                         help='Output directory',
                         type=str,
-                        default="split")
+                        metavar='str',
+                        default='split')
 
     return parser.parse_args()
 
@@ -38,7 +42,7 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    out_dir= args.outdir
+    out_dir = args.outdir
     
     if not os.path.isdir(out_dir):
         os.makedirs(out_dir)
@@ -51,6 +55,7 @@ def main():
 
         for i, rec in enumerate(parser):
             SeqIO.write(rec, forward if i % 2 == 0 else reverse, 'fasta')
+    
     print(f'Done, see output in "{out_dir}"')
 
 
