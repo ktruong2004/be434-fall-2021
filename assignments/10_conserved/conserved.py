@@ -36,8 +36,8 @@ def main():
         bases = []
         for seq in seqs:
             bases += seq[i]
-        resA = all(x == bases[0] for x in bases)
-        if resA:
+        common = all(x == bases[0] for x in bases)
+        if common:
             print("|", end='')
         else:
             print("X", end='')
