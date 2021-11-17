@@ -7,7 +7,6 @@ Purpose: Rock the Casbah
 
 import argparse
 import os
-from collections import OrderedDict
 
 
 # --------------------------------------------------
@@ -23,9 +22,7 @@ def get_args():
                         metavar='str',
                         type=str)
 
-
     args = parser.parse_args()
-
     if os.path.isfile(args.text):
         args.text = open(args.text).read().rstrip()
 
@@ -54,13 +51,14 @@ def rle(seq):
         j = i
         while (j < len(seq)-1):
             if (seq[j] == seq[j+1]):
-                count = count+1
-                j = j+1
+                count = count + 1
+                j = j + 1
             else:
                 break
         encoded_message = encoded_message + ch + str(count)
         i = j+1
-    return encoded_message
+        encode = encoded_message.replace('1', '')
+    return encode
 
 
 # --------------------------------------------------
