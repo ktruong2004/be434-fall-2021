@@ -42,22 +42,23 @@ def main():
 
 
 # --------------------------------------------------
-def encode(rle):
+def rle(seq):
     """ Create RLE """
 
     encoded_message = ""
     i = 0
-    while (i <= len(rle)-1):
+
+    while (i <= len(seq)-1):
         count = 1
-        ch = rle[i]
+        ch = seq[i]
         j = i
-        while (j < len(rle)-1):
-            if (rle[j] == rle[j+1]):
+        while (j < len(seq)-1):
+            if (seq[j] == seq[j+1]):
                 count = count+1
                 j = j+1
             else:
                 break
-        encoded_message = encoded_message+str(count)+ch
+        encoded_message = encoded_message + ch + str(count)
         i = j+1
     return encoded_message
 
@@ -71,6 +72,8 @@ def test_rle():
     assert rle('AA') == 'A2'
     assert rle('AAAAA') == 'A5'
     assert rle('ACCGGGTTTT') == 'AC2G3T4'
+
+
 # --------------------------------------------------
 if __name__ == '__main__':
     main()
