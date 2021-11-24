@@ -18,21 +18,19 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('pattern',
-                        help='A named string argument',
-                        metavar='PATTERN',
-                        type=str,
-                        default='')
+                        help='Search Pattern',
+                        metavar='PATTERN')
 
     parser.add_argument('file',
                         help='input file(s)',
                         metavar='FILE',
                         type=argparse.FileType('rt'),
-                        nargs='+', default=None)
+                        nargs='+')
 
     parser.add_argument('-i',
                         '--insensitive',
                         help='Case-insensitive search',
-                        type=str, choices='',
+                        action='store_true',
                         default=False)
 
     parser.add_argument('-o',
@@ -49,7 +47,14 @@ def main():
     """Make a jazz noise here"""
 
     args = get_args()
-    print(args)
+    for fh in args.file:
+        for line in fh:
+            if args.insensitive:
+                if re.search(args.pattern, line, re.IGNORECASE):
+                    print(line, end='')
+            else:
+                if re.search(args.pattern, line):
+                    print(line, end='')
 
 
 # --------------------------------------------------
