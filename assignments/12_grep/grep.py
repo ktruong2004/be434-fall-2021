@@ -9,6 +9,7 @@ import argparse
 import sys
 import re
 
+
 # --------------------------------------------------
 def get_args():
     """Get command-line arguments"""
@@ -48,11 +49,10 @@ def main():
 
     args = get_args()
     num_files = len(args.file)
-
     for fh in args.file:
         for line in fh:
             if re.search(args.pattern, line,
-            re.IGNORECASE if args.insensitive else 0):
+                         re.IGNORECASE if args.insensitive else 0):
                 args.outfile.write('{}{}'.format(
                     f'{fh.name}:' if num_files > 1 else '', line))
 
