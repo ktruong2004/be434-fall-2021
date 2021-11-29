@@ -5,11 +5,32 @@ Date   : 2021-11-15
 Purpose: Rock the Casbah
 """
 
+import argparse
+
+
+# --------------------------------------------------
+def get_args():
+    """Get command-line arguments"""
+
+    parser = argparse.ArgumentParser(
+        description='Rock the Casbah',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+
+    parser.add_argument('-o',
+                        '--outfile',
+                        metavar='FILE',
+                        help='Output filename',
+                        type=argparse.FileType('wt'),
+                        default='out.txt')
+
+    return parser.parse_args()
+
 
 # --------------------------------------------------
 def main():
     """Make a jazz noise here"""
 
+    args = get_args()
     input_sudoku = [[0, 0, 0, 0, 5, 2, 0, 4, 0],
                     [0, 0, 3, 6, 7, 0, 0, 0, 9],
                     [0, 6, 0, 0, 0, 3, 5, 0, 0],
@@ -22,10 +43,12 @@ def main():
     # 0 means the cells where no value is assigned
     print('Input Sudoku:')
     print_table(input_sudoku)
+    print('Input sudoku: ', input_sudoku, file=args.outfile)
     print('\n--------------------------------------\n')
     if Sudoku(input_sudoku, 0, 0):
         print('Here is the solver:')
         print_table(input_sudoku)
+        print('Here is the solver: ', input_sudoku, file=args.outfile)
     else:
         print("Something is wrong. Please check your sudoku again!!!")
 
@@ -86,7 +109,7 @@ def Sudoku(grid, row, col):
 def print_table(bo):
     """Create and print the table"""
 
-    for i in range(len(bo)):
+    for i, _ in enumerate(bo):
         if i % 3 == 0:
             if i == 0:
                 print(" ┎─────────────────────────────┒")
