@@ -64,11 +64,15 @@ $ make test
 pytest -xv test.py
 ============================= test session starts ==============================
 ...
-collected 3 items
+collected 7 items
 
-test.py::test_exists PASSED                                                                                                                                                                             [ 33%]
-test.py::test_usage PASSED                                                                                                                                                                              [ 66%]
-test.py::test_bad_file PASSED                                                                                                                                                                           [100%]
+test.py::PYLINT PASSED                                                                                                                                                                                  [ 14%]
+test.py::FLAKE8 PASSED                                                                                                                                                                                  [ 28%]
+test.py::test_exists PASSED                                                                                                                                                                             [ 42%]
+test.py::test_usage PASSED                                                                                                                                                                              [ 57%]
+test.py::test_bad_file PASSED                                                                                                                                                                           [ 71%]
+sudoku.py::PYLINT SKIPPED (file(s) previously passed pylint checks)                                                                                                                                     [ 85%]
+sudoku.py::FLAKE8 SKIPPED (file(s) previously passed FLAKE8 checks)                                                                                                                                     [100%]
 
-============================================================================================== 3 passed in 0.16s ==============================================================================================
+======================================================================================== 5 passed, 2 skipped in 1.02s =========================================================================================
 ```
