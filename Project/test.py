@@ -18,4 +18,4 @@ def test_exists():
 def test_input_1():
     """ Test Input 1"""
 
-    assert
+    

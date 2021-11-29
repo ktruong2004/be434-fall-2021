@@ -30,8 +30,9 @@ def main():
         print("Something is wrong. Please check your sudoku again!!!")
 
 
+# --------------------------------------------------
 def puzzle(a):
-    """Make a jazz noise here"""
+    """Find cell to fill"""
 
     M = 9
     for i in range(M):
@@ -42,7 +43,7 @@ def puzzle(a):
 
 # --------------------------------------------------
 def solve(grid, row, col, num):
-    """Make a jazz noise here"""
+    """Algorithm for solving sudoku"""
 
     for x in range(9):
         if grid[row][x] == num:
@@ -62,7 +63,7 @@ def solve(grid, row, col, num):
 
 # --------------------------------------------------
 def Sudoku(grid, row, col):
-    """Make a jazz noise here"""
+    """Make row and column for sudoku"""
 
     M = 9
     if (row == M - 1 and col == M):
@@ -83,7 +84,7 @@ def Sudoku(grid, row, col):
 
 # --------------------------------------------------
 def print_table(bo):
-    """Make a jazz noise here"""
+    """Create and print the table"""
 
     for i in range(len(bo)):
         if i % 3 == 0:
